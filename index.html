@@ -19,27 +19,6 @@
       width: 100vw;
       height: 100vh;
     }
-
-    /* #overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      pointer-events: none;
-    } */
-
-    /* #rectangle {
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      width: 60%;
-      height: 40%;
-      border: 5px solid white;
-      border-radius: 20px;
-      pointer-events: none;
-    } */
 </style>
 </head>
 
@@ -49,6 +28,19 @@
           <div id="rectangle" class="position-absolute"></div>
         <canvas id="canvas" class="d-none">logen</canvas>
 </div>
+function checkScreenOrientation() {
+  if (window.matchMedia("(orientation: landscape)").matches) {
+    alert("Screen is in landscape orientation");
+  } else {
+    alert("Screen is in portrait orientation");
+  }
+}
+
+// Check initial screen orientation
+checkScreenOrientation();
+
+// Add event listener to detect orientation change
+window.addEventListener("orientationchange", checkScreenOrientation);
       <!-- <button class="position-absolute bottom-0 mb-5 start-50 btn btn-secondary btn-lg w-auto"><i class="bi bi-camera-fill"></i></button> -->
    
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
