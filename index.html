@@ -114,13 +114,14 @@
 				function captureScreenshot() {
 					context.drawImage(video, 0, 0, canvas.width, canvas.height);
 					document.getElementById("screenshot").src = canvas.toDataURL("image/png");
-					// document.getElementById("screenshot").style.display = "inline-block";
+					document.getElementById("screenshot").style.display = "inline-block";
 				}
 
 				// When the video starts playing, show the overlay
 				video.addEventListener("playing", function () {
 					document.getElementById("overlay").style.display = "block";
 				});
+				
 				document.getElementById("takboleh").style.display = "none";
 				document.getElementById("boleh").style.display = "block";
 			} else {
