@@ -105,10 +105,8 @@
 		captureButton.addEventListener("click", captureScreenshot);
 		captureButton.addEventListener("touchend", captureScreenshot);
 		
-		// const boxWidth  = document.getElementById('box').style.width;
-		// document.getElementById('box').style.height = boxWidth * 1.5;
 		function captureScreenshot() {
-			context.drawImage(video, 0, 0, window.visualViewport.height, window.visualViewport.width);
+			context.drawImage(video, window.visualViewport.width - (document.getElementById('box').style.width * 0.5), window.visualViewport.height - (document.getElementById('box').style.height * 0.5), document.getElementById('box').style.width, document.getElementById('box').style.height);
 			document.getElementById("screenshot").src = canvas.toDataURL("image/png");
 			document.getElementById("screenshot").style.display = "inline-block";
 		}
