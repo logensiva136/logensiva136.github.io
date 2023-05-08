@@ -15,8 +15,7 @@
 		}
 
 		#video {
-			margin-left: auto;
-			margin-right: auto;
+			text-align: center;
 			min-width: 100vw;
 			min-height: 100vh;
 			transform: scaleX(-1);
@@ -72,8 +71,6 @@
 </head>
 
 <body>
-	<div id="boleh">
-		<!-- <h1>Mobile Camera Capture</h1> -->
 		<div id="container">
 			<video id="video" autoplay></video>
 			<div id="box"></div>
@@ -82,10 +79,6 @@
 		<button id="capture">Capture Screenshot</button>
 		<canvas id="canvas" style="display: none;background-color: #4CAF50;"></canvas>
 		<img id="screenshot" style="display: none;background-color: #4CAF50;">
-	</div>
-	<div id="takboleh">
-		<h1>Please rotate your device to proceed.</h1>
-	</div>
 	<script>
 
 		navigator.mediaDevices.getUserMedia({
