@@ -85,15 +85,12 @@
 		<h1>Please rotate your device to proceed.</h1>
 	</div>
 	<script>
-		// Add event listener to detect orientation change
-		window.addEventListener("orientationchanged", checkScreenOrientation);
 
 		var video = document.getElementById("video");
 		navigator.mediaDevices.getUserMedia({
 			video: {
 				facingMode: "environment"
 			}
-
 		})
 			.then(function (stream) {
 				video.srcObject = stream;
@@ -123,7 +120,7 @@
 		});
 
 		function checkScreenOrientation() {
-			if (window.orientation !== 0) {
+			if (window.matchMedia("(orientation: landscape)").matches) {
 				document.getElementById("boleh").style.display = "block";
 				document.getElementById("takboleh").style.display = "none";
 			} else {
@@ -135,6 +132,9 @@
 
 		// Check initial screen orientation
 		checkScreenOrientation();
+
+		// Add event listener to detect orientation change
+		window.addEventListener("orientationchanged", checkScreenOrientation);
 	</script>
 </body>
 
