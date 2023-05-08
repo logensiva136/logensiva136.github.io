@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Mobile Camera Capture</title>
@@ -7,12 +8,15 @@
 		#container {
 			position: relative;
 		}
+
 		#video {
 			width: 100%;
 			height: auto;
-			transform: scaleX(-1); /* Flip the video horizontally */
-            z-index: 1;
+			transform: scaleX(-1);
+			/* Flip the video horizontally */
+			z-index: 1;
 		}
+
 		#overlay {
 			position: absolute;
 			top: 0;
@@ -23,6 +27,7 @@
 			z-index: 1;
 			display: none;
 		}
+
 		#capture {
 			position: absolute;
 			bottom: 20px;
@@ -38,79 +43,83 @@
 			box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
 			z-index: 2;
 		}
+
 		#screenshot {
 			display: none;
 		}
-        #box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 60%;
-            border: 2px solid white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
-            z-index: 2;
-            background-color: rgba(0, 0, 0, 0);
-        }
+
+		#box {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 80%;
+			height: 60%;
+			border: 2px solid white;
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+			z-index: 2;
+			background-color: rgba(0, 0, 0, 0);
+		}
 	</style>
 </head>
+
 <body>
-    <h1>Mobile Camera Capture</h1>
+	<h1>Mobile Camera Capture</h1>
 	<div id="container">
 		<video id="video" autoplay></video>
 		<div id="box"></div>
 		<div id="overlay"></div>
 	</div>
-    <button id="capture">Capture Screenshot</button>
+	<button id="capture">Capture Screenshot</button>
 	<canvas id="canvas" style="display: none;background-color: #4CAF50;"></canvas>
 	<img id="screenshot" style="display: none;background-color: #4CAF50;">
 	<script>
-		// Get the video element and start the camera stream
-		var video = document.getElementById("video");
-		navigator.mediaDevices.getUserMedia({ video: true })
-			.then(function(stream) {
-				video.srcObject = stream;
-			})
-			.catch(function(err) {
-				console.log("An error occurred: " + err);
-			});
 
-		// Get the capture button and canvas element
-		var captureButton = document.getElementById("capture");
-		var canvas = document.getElementById("canvas");
-		var context = canvas.getContext("2d");
-
-		// When the capture button is clicked or touched, take a screenshot of the video
-		captureButton.addEventListener("click", captureScreenshot);
-		captureButton.addEventListener("touchend", captureScreenshot);
-
-		function captureScreenshot() {
-			context.drawImage(video, 0, 0, canvas.width, canvas.height);
-			document.getElementById("screenshot").src = canvas.toDataURL("image/png");
-			document.getElementById("screenshot").style.display = "inline-block";
-		}
-
-		// When the video starts playing, show the overlay
-		video.addEventListener("playing", function() {
-			document.getElementById("overlay").style.display = "block";
-		});
 
 		function checkScreenOrientation() {
-      if (window.matchMedia("(orientation: landscape)").matches) {
-        alert("Screen is in landscape orientation");
-      } else {
-        alert("Screen is in portrait orientation");
-      }
-    }
+			if (window.matchMedia("(orientation: landscape)").matches) {
+				// Get the video element and start the camera stream
+				var video = document.getElementById("video");
+				navigator.mediaDevices.getUserMedia({ video: true })
+					.then(function (stream) {
+						video.srcObject = stream;
+					})
+					.catch(function (err) {
+						console.log("An error occurred: " + err);
+					});
 
-    // Check initial screen orientation
-    checkScreenOrientation();
+				// Get the capture button and canvas element
+				var captureButton = document.getElementById("capture");
+				var canvas = document.getElementById("canvas");
+				var context = canvas.getContext("2d");
 
-    // Add event listener to detect orientation change
-    window.addEventListener("orientationchange", checkScreenOrientation);
+				// When the capture button is clicked or touched, take a screenshot of the video
+				captureButton.addEventListener("click", captureScreenshot);
+				captureButton.addEventListener("touchend", captureScreenshot);
+
+				function captureScreenshot() {
+					context.drawImage(video, 0, 0, canvas.width, canvas.height);
+					document.getElementById("screenshot").src = canvas.toDataURL("image/png");
+					// document.getElementById("screenshot").style.display = "inline-block";
+				}
+
+				// When the video starts playing, show the overlay
+				video.addEventListener("playing", function () {
+					document.getElementById("overlay").style.display = "block";
+				});
+			} else {
+				alert("Screen is in portrait orientation");
+			}
+		}
+
+		// Check initial screen orientation
+		checkScreenOrientation();
+
+		// Add event listener to detect orientation change
+		window.addEventListener("orientationchange", checkScreenOrientation);
 	</script>
 </body>
+
 </html>
