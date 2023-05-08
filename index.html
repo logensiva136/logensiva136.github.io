@@ -86,19 +86,6 @@
 	</div>
 	<script>
 
-		var video = document.getElementById("video");
-		navigator.mediaDevices.getUserMedia({
-			video: {
-				facingMode: "environment"
-			}
-		})
-			.then(function (stream) {
-				video.srcObject = stream;
-			})
-			.catch(function (err) {
-				console.log("An error occurred: " + err);
-			});
-
 		// Get the capture button and canvas element
 		var captureButton = document.getElementById("capture");
 		var canvas = document.getElementById("canvas");
@@ -124,6 +111,18 @@
 				alert("Screen is in landscape orientation. Please rotate your device.");
 				document.getElementById("boleh").style.display = "block";
 				document.getElementById("takboleh").style.display = "none";
+				var video = document.getElementById("video");
+		navigator.mediaDevices.getUserMedia({
+			video: {
+				facingMode: "environment"
+			}
+		})
+			.then(function (stream) {
+				video.srcObject = stream;
+			})
+			.catch(function (err) {
+				console.log("An error occurred: " + err);
+			});
 			} else {
 				alert("Screen is in portrait orientation. Please rotate your devi ce.");
 				document.getElementById("takboleh").style.display = "block";
