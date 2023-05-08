@@ -108,7 +108,7 @@
 		// const boxWidth  = document.getElementById('box').style.width;
 		// document.getElementById('box').style.height = boxWidth * 1.5;
 		function captureScreenshot() {
-			context.drawImage(video, 0, 0, window.visualViewport.width, window.visualViewport.height);
+			context.drawImage(video, 0, 0, window.visualViewport.height, window.visualViewport.width);
 			document.getElementById("screenshot").src = canvas.toDataURL("image/png");
 			document.getElementById("screenshot").style.display = "inline-block";
 		}
