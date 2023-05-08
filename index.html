@@ -80,8 +80,8 @@
 			<div id="overlay"></div>
 		</div>
 		<button id="capture">Capture Screenshot</button>
-		<canvas id="canvas" style="display: none;background-color: #4CAF50;"></canvas>
-		<img id="screenshot" style="display: none;background-color: #4CAF50;">
+		<canvas id="canvas"></canvas>
+		<img id="screenshot" >
 
 	<script>
 
@@ -108,7 +108,7 @@
 		// const boxWidth  = document.getElementById('box').style.width;
 		// document.getElementById('box').style.height = boxWidth * 1.5;
 		function captureScreenshot() {
-			context.drawImage(video, 0, 0, canvas.width, canvas.height);
+			context.drawImage(video, 0, 0, window.visualViewport.width, window.visualViewport.height);
 			document.getElementById("screenshot").src = canvas.toDataURL("image/png");
 			document.getElementById("screenshot").style.display = "inline-block";
 		}
