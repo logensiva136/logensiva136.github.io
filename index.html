@@ -60,8 +60,7 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			width: 80vw;
-			height: calc(80vw * 0.5625);
+			width: 80vw;;
 			border: 2px solid white;
 			border-radius: 10px;
 			overflow: hidden;
@@ -83,6 +82,8 @@
 		<img id="screenshot" style="display: none;background-color: #4CAF50;">
 
 	<script>
+		const boxWidth  = document.getElementById('box').style.width;
+		document.getElementById('box').style.height = boxWidth * 1.5;
 		navigator.mediaDevices.getUserMedia({
 			video: {
 				facingMode: "environment"
