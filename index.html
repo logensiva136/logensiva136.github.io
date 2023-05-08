@@ -83,34 +83,35 @@
 		<img id="screenshot" style="display: none;background-color: #4CAF50;">
 
 	<script>
-		const boxWidth  = document.getElementById('box').style.width;
-		document.getElementById('box').style.height = boxWidth * 1.5;
+
 		navigator.mediaDevices.getUserMedia({
 			video: {
 				facingMode: "environment"
 			}
 		})
-			.then(function (stream) {
-				video.srcObject = stream;
-			})
-			.catch(function (err) {
-				console.log("An error occurred: " + err);
-			});
+		.then(function (stream) {
+			video.srcObject = stream;
+		})
+		.catch(function (err) {
+			console.log("An error occurred: " + err);
+		});
 		// Get the capture button and canvas element
 		var captureButton = document.getElementById("capture");
 		var canvas = document.getElementById("canvas");
 		var context = canvas.getContext("2d");
-
+		
 		// When the capture button is clicked or touched, take a screenshot of the video
 		captureButton.addEventListener("click", captureScreenshot);
 		captureButton.addEventListener("touchend", captureScreenshot);
-
+		
+		const boxWidth  = document.getElementById('box').style.width;
+		document.getElementById('box').style.height = boxWidth * 1.5;
 		function captureScreenshot() {
 			context.drawImage(video, 0, 0, canvas.width, canvas.height);
 			document.getElementById("screenshot").src = canvas.toDataURL("image/png");
 			document.getElementById("screenshot").style.display = "inline-block";
 		}
-
+		
 		// When the video starts playing, show the overlay
 		video.addEventListener("playing", function () {
 			document.getElementById("overlay").style.display = "block";
