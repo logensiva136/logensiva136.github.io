@@ -88,6 +88,8 @@
 
 		function checkScreenOrientation() {
 			if (window.matchMedia("(orientation: landscape)").matches) {
+				document.getElementById("takboleh").style.display = "none";
+				document.getElementById("boleh").style.display = "block";
 				// Get the video element and start the camera stream
 				var video = document.getElementById("video");
 				navigator.mediaDevices.getUserMedia({
@@ -122,8 +124,7 @@
 					document.getElementById("overlay").style.display = "block";
 				});
 				
-				document.getElementById("takboleh").style.display = "none";
-				document.getElementById("boleh").style.display = "block";
+		
 			} else {
 				// alert("Screen is in portrait orientation. Please rotate your device.");
 				document.getElementById("takboleh").style.display = "block";
