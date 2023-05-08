@@ -85,12 +85,15 @@
 		<h1>Please rotate your device to proceed.</h1>
 	</div>
 	<script>
+		// Add event listener to detect orientation change
+		window.addEventListener("orientationchanged", checkScreenOrientation);
 
 		var video = document.getElementById("video");
 		navigator.mediaDevices.getUserMedia({
 			video: {
 				facingMode: "environment"
 			}
+
 		})
 			.then(function (stream) {
 				video.srcObject = stream;
@@ -132,9 +135,6 @@
 
 		// Check initial screen orientation
 		checkScreenOrientation();
-
-		// Add event listener to detect orientation change
-		window.addEventListener("orientationchanged", checkScreenOrientation);
 	</script>
 </body>
 
