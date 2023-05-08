@@ -88,8 +88,8 @@
 
 		function checkScreenOrientation() {
 			if (window.matchMedia("(orientation: landscape)").matches) {
-				document.getElementById("takboleh").style.display = "none";
 				document.getElementById("boleh").style.display = "block";
+				document.getElementById("takboleh").style.display = "none";
 				// Get the video element and start the camera stream
 				var video = document.getElementById("video");
 				navigator.mediaDevices.getUserMedia({
