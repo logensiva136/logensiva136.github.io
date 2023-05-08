@@ -33,7 +33,7 @@
 			bottom: 0;
 			left: 50%;
 			transform: translateX(-50%);
-			padding: 10px 20px;
+			margin-bottom: 20px;
 			font-size: 24px;
 			background-color: #4CAF50;
 			color: white;
@@ -72,8 +72,8 @@
 			<video id="video" autoplay></video>
 			<div id="box"></div>
 			<div id="overlay"></div>
-			<button id="capture">Capture Screenshot</button>
 		</div>
+		<button id="capture">Capture Screenshot</button>
 		<canvas id="canvas" style="display: none;background-color: #4CAF50;"></canvas>
 		<img id="screenshot" style="display: none;background-color: #4CAF50;">
 	</div>
@@ -84,6 +84,7 @@
 
 
 		function checkScreenOrientation() {
+			location.reload();
 			if (window.matchMedia("(orientation: landscape)").matches) {
 
 				// Get the video element and start the camera stream
@@ -119,7 +120,6 @@
 				video.addEventListener("playing", function () {
 					document.getElementById("overlay").style.display = "block";
 				});
-				location.reload();
 				document.getElementById("takboleh").style.display = "none";
 				document.getElementById("boleh").style.display = "block";
 			} else {
