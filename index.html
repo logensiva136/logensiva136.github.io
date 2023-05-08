@@ -75,10 +75,10 @@
 			<video id="video" autoplay></video>
 			<div id="box"></div>
 			<div id="overlay"></div>
+			<button id="capture">Capture Screenshot</button>
+			<canvas id="canvas" style="display: none;background-color: #4CAF50;"></canvas>
+			<img id="screenshot" style="display: none;background-color: #4CAF50;">
 		</div>
-		<button id="capture">Capture Screenshot</button>
-		<canvas id="canvas" style="display: none;background-color: #4CAF50;"></canvas>
-		<img id="screenshot" style="display: none;background-color: #4CAF50;">
 	<script>
 
 		navigator.mediaDevices.getUserMedia({
