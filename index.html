@@ -12,12 +12,14 @@
 
 		#container {
 			position: relative;
+			display: flex;
+			justify-content: center;
+			overflow-x: hidden;
 		}
 
 		#video {
-			text-align: center;
-			min-width: 100vw;
-			min-height: 100vh;
+			/* max-width: 100vw; */
+			height: 100vh;
 			transform: scaleX(-1);
 			/* Flip the video horizontally */
 			z-index: 1;
@@ -75,12 +77,12 @@
 			<video id="video" autoplay></video>
 			<div id="box"></div>
 			<div id="overlay"></div>
-			<button id="capture">Capture Screenshot</button>
-			<canvas id="canvas" style="display: none;background-color: #4CAF50;"></canvas>
-			<img id="screenshot" style="display: none;background-color: #4CAF50;">
 		</div>
-	<script>
+		<button id="capture">Capture Screenshot</button>
+		<canvas id="canvas" style="display: none;background-color: #4CAF50;"></canvas>
+		<img id="screenshot" style="display: none;background-color: #4CAF50;">
 
+	<script>
 		navigator.mediaDevices.getUserMedia({
 			video: {
 				facingMode: "environment"
