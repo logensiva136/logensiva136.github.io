@@ -32,7 +32,7 @@
 			position: absolute;
 			bottom: 20px;
 			left: 50%;
-			transform: translateX(-50%);
+			/* transform: translateX(-50%); */
 			padding: 10px 20px;
 			font-size: 24px;
 			background-color: #4CAF50;
@@ -67,7 +67,7 @@
 
 <body>
 	<div id="boleh">
-		<h1>Mobile Camera Capture</h1>
+		<!-- <h1>Mobile Camera Capture</h1> -->
 		<div id="container">
 			<video id="video" autoplay></video>
 			<div id="box"></div>
@@ -119,6 +119,7 @@
 				video.addEventListener("playing", function () {
 					document.getElementById("overlay").style.display = "block";
 				});
+
 				document.getElementById("takboleh").style.display = "none";
 				document.getElementById("boleh").style.display = "block";
 			} else {
