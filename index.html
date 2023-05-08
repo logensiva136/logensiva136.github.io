@@ -120,7 +120,7 @@
 		});
 
 		function checkScreenOrientation() {
-			if (window.matchMedia("(orientation: landscape)").matches) {
+			if (window.orientation !== 0) {
 				document.getElementById("boleh").style.display = "block";
 				document.getElementById("takboleh").style.display = "none";
 			} else {
