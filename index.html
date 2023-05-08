@@ -15,7 +15,7 @@
 		}
 
 		#video {
-			width: 100%;
+			width: 100vw;
 			height: 100vh;
 			transform: scaleX(-1);
 			/* Flip the video horizontally */
@@ -117,25 +117,7 @@
 			document.getElementById("overlay").style.display = "block";
 		});
 
-		function checkScreenOrientation() {
-			if (window.matchMedia("(orientation: landscape)").matches) {
-				alert("Screen is in landscape orientation. Please rotate your device.");
-				document.getElementById("boleh").style.display = "block";
-				document.getElementById("takboleh").style.display = "none";
-				var video = document.getElementById("video");
-
-			} else {
-				alert("Screen is in portrait orientation. Please rotate your devi ce.");
-				document.getElementById("takboleh").style.display = "block";
-				document.getElementById("boleh").style.display = "none";
-			}
-		}
-
-		// Check initial screen orientation
-		// checkScreenOrientation();
-
-		// Add event listener to detect orientation change
-		// window.addEventListener("orientationchange", checkScreenOrientation);
+		
 	</script>
 </body>
 
