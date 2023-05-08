@@ -66,23 +66,35 @@
 </head>
 
 <body>
-	<h1>Mobile Camera Capture</h1>
-	<div id="container">
-		<video id="video" autoplay></video>
-		<div id="box"></div>
-		<div id="overlay"></div>
+	<div id="boleh">
+		<h1>Mobile Camera Capture</h1>
+		<div id="container">
+			<video id="video" autoplay></video>
+			<div id="box"></div>
+			<div id="overlay"></div>
+		</div>
+		<button id="capture">Capture Screenshot</button>
+		<canvas id="canvas" style="display: none;background-color: #4CAF50;"></canvas>
+		<img id="screenshot" style="display: none;background-color: #4CAF50;">
 	</div>
-	<button id="capture">Capture Screenshot</button>
-	<canvas id="canvas" style="display: none;background-color: #4CAF50;"></canvas>
-	<img id="screenshot" style="display: none;background-color: #4CAF50;">
+	<div id="takboleh">
+		<h1>Please rotate your device to proceed.</h1>
+	</div>
 	<script>
 
 
 		function checkScreenOrientation() {
 			if (window.matchMedia("(orientation: landscape)").matches) {
+				document.getElementById("takboleh").style.display = "none";
+				document.getElementById("boleh").style.display = "block";
+
 				// Get the video element and start the camera stream
 				var video = document.getElementById("video");
-				navigator.mediaDevices.getUserMedia({ video: true })
+				navigator.mediaDevices.getUserMedia({
+					video: {
+						facingMode: "environment"
+					}
+				})
 					.then(function (stream) {
 						video.srcObject = stream;
 					})
@@ -110,7 +122,9 @@
 					document.getElementById("overlay").style.display = "block";
 				});
 			} else {
-				alert("Screen is in portrait orientation");
+				alert("Screen is in portrait orientation. Please rotate your device.");
+				document.getElementById("takboleh").style.display = "block";
+				document.getElementById("boleh").style.display = "none";
 			}
 		}
 
