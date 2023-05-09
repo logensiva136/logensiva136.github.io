@@ -88,6 +88,7 @@
 			z-index: 2;
 			background-color: rgba(0, 0, 0, 0);
 		}
+
 		canvas {
 			display: none;
 		}
@@ -98,12 +99,15 @@
 	<div id="container">
 		<video id="video" autoplay></video>
 		<div id="box"></div>
-		<div id="overlay"></div>
+		<!-- <div id="overlay"></div> -->
 		<h3><strong>Front IC</strong></h3>
 		<button id="capture"><i class="fa-solid fa-camera fa-8x"></i></button>
 	</div>
 	<canvas id="canvas"></canvas>
 	<script>
+		addEventListener("mousemove", function (e) {
+			console.log(e.pageX,e.pageY)
+		})
 		navigator.mediaDevices.getUserMedia({
 			video: {
 				facingMode: "environment"
@@ -119,23 +123,34 @@
 		var captureButton = document.getElementById("capture");
 		var canvas = document.getElementById("canvas");
 		var context = canvas.getContext("2d");
-
+		const overlay = document.getElementById('box');
+		canvas.width = overlay.offsetWidth;
+		canvas.height = overlay.offsetHeight;
+		const vw = window.innerWidth;
+		const vh = window.innerHeight;
 		// When the capture button is clicked or touched, take a screenshot of the video
 		captureButton.addEventListener("click", captureScreenshot);
 		captureButton.addEventListener("touchend", captureScreenshot);
 
+
 		function captureScreenshot() {
-			const bw = document.getElementById('box');
-			alert(window.visualViewport.width,window.visualViewport.height);
-			context.drawImage(video, bw.offsetHeight-(bw.offsetHeight*.5), bw.offsetWidth-(bw.offsetWidth*.5), bw.offsetHeight, bw.offsetHeight);
-			// context.drawImage(video, 0, 0, document.getElementById('box').style.width, document.getElementById('box').style.height);
-			let img = canvas.toDataURL("image/png");
+			context.drawImage(video,
+				(vw / 2) - (overlay.offsetWidth / 2),
+				(vh / 2) - (overlay.offsetHeight / 2),
+				overlay.offsetWidth,
+				overlay.offsetHeight,
+				0,
+				0,
+				overlay.offsetWidth,
+				300
+			);
+			let img = canvas.toDataURL('image/png');
 			window.open(img, '_blank');
 		}
 
 		// When the video starts playing, show the overlay
 		video.addEventListener("playing", function () {
-			document.getElementById("overlay").style.display = "block";
+			// document.getElementById("overlay").style.display = "block";
 		});
 
 
