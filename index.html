@@ -4,11 +4,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Mobile Camera Capture</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<style>
 		body {
 			margin: 0;
 			padding: 0;
+			overflow: hidden;
 		}
 
 		#container {
@@ -20,7 +23,8 @@
 
 		#video {
 			/* max-width: 100vw; */
-			height: 100vh;
+			min-height: 100vh;
+
 			/* transform: scaleX(-1); */
 			/* transform: scaleY(-1); */
 			/* Flip the video horizontally */
@@ -53,15 +57,16 @@
 			box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
 			z-index: 2;
 		}
-		p{
+
+		h3 {
 			position: fixed;
-			bottom: 30%;
+			top: 20%;
 			left: 50%;
 			font-size: 4rem;
 			font-family: Verdana, Geneva, Tahoma, sans-serif;
 			transform: translateX(-50%);
 			color: white;
-			text-shadow: 1px 1px 2px black;
+			text-shadow: 0px 0px 100px black;
 			z-index: 2;
 		}
 
@@ -83,54 +88,57 @@
 			z-index: 2;
 			background-color: rgba(0, 0, 0, 0);
 		}
+		canvas {
+			display: none;
+		}
 	</style>
 </head>
 
 <body>
-		<div id="container">
-			<video id="video" autoplay></video>
-			<div id="box"></div>
-			<div id="overlay"></div>
-			<p><strong>Front IC</strong></p>
-			<button id="capture"><i class="fa-solid fa-camera fa-8x"></i></button>
-		</div>
-		<!-- <canvas id="canvas"></canvas>
-		<img id="screenshot" > -->
-
+	<div id="container">
+		<video id="video" autoplay></video>
+		<div id="box"></div>
+		<div id="overlay"></div>
+		<h3><strong>Front IC</strong></h3>
+		<button id="capture"><i class="fa-solid fa-camera fa-8x"></i></button>
+	</div>
+	<canvas id="canvas"></canvas>
 	<script>
-
 		navigator.mediaDevices.getUserMedia({
 			video: {
 				facingMode: "environment"
 			}
 		})
-		.then(function (stream) {
-			video.srcObject = stream;
-		})
-		.catch(function (err) {
-			console.log("An error occurred: " + err);
-		});
+			.then(function (stream) {
+				video.srcObject = stream;
+			})
+			.catch(function (err) {
+				console.log("An error occurred: " + err);
+			});
 		// Get the capture button and canvas element
 		var captureButton = document.getElementById("capture");
 		var canvas = document.getElementById("canvas");
 		var context = canvas.getContext("2d");
-		
+
 		// When the capture button is clicked or touched, take a screenshot of the video
 		captureButton.addEventListener("click", captureScreenshot);
 		captureButton.addEventListener("touchend", captureScreenshot);
-		
+
 		function captureScreenshot() {
-			context.drawImage(video, window.visualViewport.width - (document.getElementById('box').style.width * 0.5), window.visualViewport.height - (document.getElementById('box').style.height * 0.5), document.getElementById('box').style.width, document.getElementById('box').style.height);
-			document.getElementById("screenshot").src = canvas.toDataURL("image/png");
-			document.getElementById("screenshot").style.display = "inline-block";
+			const bw = document.getElementById('box');
+			alert(window.visualViewport.width,window.visualViewport.height);
+			context.drawImage(video, bw.offsetHeight-(bw.offsetHeight*.5), bw.offsetWidth-(bw.offsetWidth*.5), bw.offsetHeight, bw.offsetHeight);
+			// context.drawImage(video, 0, 0, document.getElementById('box').style.width, document.getElementById('box').style.height);
+			let img = canvas.toDataURL("image/png");
+			window.open(img, '_blank');
 		}
-		
+
 		// When the video starts playing, show the overlay
 		video.addEventListener("playing", function () {
 			document.getElementById("overlay").style.display = "block";
 		});
 
-		
+
 	</script>
 </body>
 
