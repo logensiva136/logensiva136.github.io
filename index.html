@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Mobile Camera Capture</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<style>
 		body {
 			margin: 0;
@@ -39,15 +40,16 @@
 
 		#capture {
 			position: fixed;
-			bottom: 10px;
+			width: 20rem;
+			height: 20rem;
+			bottom: 100px;
 			left: 50%;
 			transform: translateX(-50%);
-			font-size: 24px;
 			background-color: #4CAF50;
 			color: white;
 			border: none;
 			cursor: pointer;
-			border-radius: 10px;
+			border-radius: 10rem;
 			box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
 			z-index: 2;
 		}
@@ -78,10 +80,10 @@
 			<video id="video" autoplay></video>
 			<div id="box"></div>
 			<div id="overlay"></div>
+			<button id="capture"><i class="fa-solid fa-camera fa-9x"></i></button>
 		</div>
-		<button id="capture">Capture Screenshot</button>
-		<canvas id="canvas"></canvas>
-		<img id="screenshot" >
+		<!-- <canvas id="canvas"></canvas>
+		<img id="screenshot" > -->
 
 	<script>
 
