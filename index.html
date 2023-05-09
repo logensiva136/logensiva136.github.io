@@ -40,8 +40,8 @@
 
 		#capture {
 			position: fixed;
-			width: 20rem;
-			height: 20rem;
+			width: 15rem;
+			height: 15rem;
 			bottom: 100px;
 			left: 50%;
 			transform: translateX(-50%);
@@ -51,6 +51,17 @@
 			cursor: pointer;
 			border-radius: 10rem;
 			box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+			z-index: 2;
+		}
+		p{
+			position: fixed;
+			bottom: 30%;
+			left: 50%;
+			font-size: 4rem;
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+			transform: translateX(-50%);
+			color: white;
+			text-shadow: 1px 1px 2px black;
 			z-index: 2;
 		}
 
@@ -80,7 +91,8 @@
 			<video id="video" autoplay></video>
 			<div id="box"></div>
 			<div id="overlay"></div>
-			<button id="capture"><i class="fa-solid fa-camera fa-9x"></i></button>
+			<p><strong>Front IC</strong></p>
+			<button id="capture"><i class="fa-solid fa-camera fa-8x"></i></button>
 		</div>
 		<!-- <canvas id="canvas"></canvas>
 		<img id="screenshot" > -->
